@@ -45,6 +45,7 @@
       });
   
       if (response.ok) {
+        console.log('Login bem sucedido');
         // Lógica a ser executada quando o login é bem-sucedido
         router.push('/');
       } else {

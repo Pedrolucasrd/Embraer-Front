@@ -38,7 +38,7 @@ const sDrawer = ref(true);
                 </template>
             </v-list>
             <div class="pa-4">
-                <ExtraBox />
+                
             </div>
         </perfect-scrollbar>
     </div>
