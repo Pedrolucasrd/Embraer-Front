@@ -1,56 +1,41 @@
 <template>
-    <v-row>
-      <v-col cols="12">
-        <v-row>
-          <!-- Sales overview -->
-          <v-col cols="12" lg="8">
-            <SalesOverview />
-          </v-col>
-          <!-- Yearly Breakup / Monthly Earnings -->
-          <v-col cols="12" lg="4">
-            <div class="mb-6">
-              <YearlyBreakup />
-            </div>
-            <div>
-              <MonthlyEarning />
-            </div>
-          </v-col>
-          <!-- Recent transaction -->
-          <v-col cols="12" lg="4">
-            <RecentTransaction />
-          </v-col>
-          <!-- Product performence -->
-          <v-col cols="12" lg="8">
-            <ProductPerformance />
-          </v-col>
-          <!-- Product Cards -->
-          <v-col cols="12">
+  <v-row>
+    <v-col cols="12">
+      <v-row>
+        <v-col cols="12">
+          <div v-if="role === 'user'">
             <ProductCards />
-          </v-col>
-        </v-row>
-      </v-col>
-      <v-col class="text-center mt-2">
-        <p class="text-muted">Design and Developed by <a flat variant="text" href="https://adminmart.com/" target="_blank" class="pl-1 text-primary">AdminMart.com</a></p>
-      </v-col>
-    </v-row>
-  </template>
-  
-  <script setup lang="ts">
-  import axios from 'axios';
-  import SalesOverview from '@/components/dashboard/SalesOverview.vue';
-  import YearlyBreakup from '@/components/dashboard/YearlyBreakup.vue';
-  import MonthlyEarning from '@/components/dashboard/MonthlyEarnings.vue';
-  import RecentTransaction from '@/components/dashboard/RecentTransaction.vue';
-  import ProductPerformance from '@/components/dashboard/ProductPerformance.vue';
-  import ProductCards from '@/components/dashboard/ProductCards.vue';
-  
-  // Fazendo a solicitação GET ao iniciar a página
-  axios.get('https://brasilapi.com.br/api/cep/v2/12287170')
-    .then(response => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.error(error);
-    });
-  </script>
-  
+          </div>
+          <div v-else>
+            <!-- Conteúdo a ser exibido quando role não for 'user' -->
+          </div>
+        </v-col>
+        <v-col cols="12" lg="8">
+          <ProductPerformance />
+        </v-col>
+      </v-row>
+    </v-col>
+    <v-col class="text-center mt-2">
+      <p class="text-muted">Design and Developed by <a flat variant="text" href="https://adminmart.com/" target="_blank" class="pl-1 text-primary">AdminMart.com</a></p>
+    </v-col>
+  </v-row>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import ProductPerformance from '@/components/dashboard/ProductPerformance.vue';
+import ProductCards from '@/components/dashboard/ProductCards.vue';
+import { getUserInfo } from '@/data/logged'; // Importando a função getUserInfo do arquivo logged.ts
+
+const role = ref(''); // Crie uma referência reativa para a propriedade role
+
+// Fazendo a solicitação GET ao iniciar a página
+async function fetchData() {
+  const userRole = await getUserInfo(); // Aguardando a resolução da Promise retornada por getUserInfo()
+  if (userRole === 'ROLE_USER') {
+    role.value = 'user'; // Atribua o valor à referência reativa
+  }
+}
+
+fetchData(); // Chamando a função para buscar os dados
+</script>

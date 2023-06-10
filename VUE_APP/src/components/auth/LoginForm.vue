@@ -1,60 +1,57 @@
 <template>
-    <v-row class="d-flex mb-3">
-      <v-col cols="12">
-        <v-label class="font-weight-bold mb-1">Username</v-label>
-        <v-text-field v-model="username" variant="outlined" hide-details color="primary"></v-text-field>
-      </v-col>
-      <v-col cols="12">
-        <v-label class="font-weight-bold mb-1">Password</v-label>
-        <v-text-field v-model="password" variant="outlined" type="password" hide-details color="primary"></v-text-field>
-      </v-col>
-      <v-col cols="12" class="pt-0">
-        <div class="d-flex flex-wrap align-center ml-n2">
-          <v-checkbox v-model="rememberDevice" color="primary" hide-details>
-            <template v-slot:label class="text-body-1">Remember this Device</template>
-          </v-checkbox>
-          <div class="ml-sm-auto">
-            <RouterLink to="/" class="text-primary text-decoration-none text-body-1 opacity-1 font-weight-medium">Forgot Password?</RouterLink>
-          </div>
-        </div>
-      </v-col>
-      <v-col cols="12" class="pt-0">
-        <v-btn @click="signIn" color="primary" size="large" block flat>Sign in</v-btn>
-      </v-col>
-    </v-row>
-  </template>
+  <div class="container">
+    <form class="form-signin" method="POST" action="http://localhost:8081/users/login">
+      <h2 class="form-signin-heading">Login</h2>
+      <input type="text" class="form-control" name="username" placeholder="Nome de usuário" required autofocus>
+      <input type="password" class="form-control" name="password" placeholder="Senha" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+  </div>
+</template>
   
-  <script setup lang="ts">
-  import { ref } from 'vue';
-  import { RouterLink, useRouter } from 'vue-router';
+<script lang="ts">
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+export default {
+  name: 'LoginForm',
+};
+</script>
   
-  const username = ref('');
-  const password = ref('');
-  const rememberDevice = ref(true);
-  const router = useRouter();
-  
-  async function signIn() {
-    const formData = new FormData();
-    formData.append('username', username.value);
-    formData.append('password', password.value);
-  
-    try {
-      const response = await fetch('http://localhost:8081/users/login', {
-        method: 'POST',
-        body: formData
-      });
-  
-      if (response.ok) {
-        console.log('Login bem sucedido');
-        // Lógica a ser executada quando o login é bem-sucedido
-        router.push('/');
-      } else {
-        // Lógica a ser executada quando ocorre um erro no login
-        alert('Invalid login');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-  </script>
-  
+  <style>
+  /* Estilos adicionais personalizados */
+  body {
+       padding-top: 40px;
+       padding-bottom: 40px;
+       background-color: #f5f5f5;
+     }
+ 
+     .form-signin {
+       max-width: 330px;
+       padding: 15px;
+       margin: 0 auto;
+     }
+ 
+     .form-signin .form-control {
+       position: relative;
+       box-sizing: border-box;
+       height: auto;
+       padding: 10px;
+       font-size: 16px;
+     }
+ 
+     .form-signin .form-control:focus {
+       z-index: 2;
+     }
+ 
+     .form-signin input[type="text"] {
+       margin-bottom: 10px;
+       border-bottom-left-radius: 0;
+       border-bottom-right-radius: 0;
+     }
+ 
+     .form-signin input[type="password"] {
+       margin-bottom: 10px;
+       border-top-left-radius: 0;
+       border-top-right-radius: 0;
+     }
+ </style>

@@ -100,44 +100,49 @@ const productPerformance: productPerformanceType[] = [
 ];
 
 /*--Products Cards--*/
-import proimg1 from '@/assets/images/products/s4.jpg';
+import proimg1 from '@/assets/images/products/s4.png';
 import proimg2 from '@/assets/images/products/s5.jpg';
 import proimg3 from '@/assets/images/products/s7.jpg';
 import proimg4 from '@/assets/images/products/s11.jpg';
+
+
+import axios from 'axios';
+interface Chassi {
+    idChassi: string;
+    // Outras propriedades do objeto chassi, se houver
+  }
+let chassis = [];
+
+axios.get('http://localhost:8081/chassi', {
+    withCredentials: true,
+})
+    .then(response => {
+        const chassis: Chassi[] = response.data;
+
+        chassis.forEach(chassi => {
+            const product: productsCards = {
+                title: chassi.idChassi,
+                link: '/',
+                photo: proimg1,
+                salesPrice: 0,
+                price: 0,
+                rating: 0
+            };
+            productsCard.push(product);
+        });
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+
+
 const productsCard: productsCards[] = [
-    {
-        title: 'Boat Headphone',
-        link: '/',
-        photo: proimg1,
-        salesPrice: 375,
-        price: 285,
-        rating: 4
-    },
-    {
-        title: 'MacBook Air Pro',
-        link: '/',
-        photo: proimg2,
-        salesPrice: 650,
-        price: 900,
-        rating: 5
-    },
-    {
-        title: 'Red Valvet Dress',
-        link: '/',
-        photo: proimg3,
-        salesPrice: 150,
-        price: 200,
-        rating: 3
-    },
-    {
-        title: 'Cute Soft Teddybear',
-        link: '/',
-        photo: proimg4,
-        salesPrice: 285,
-        price: 345,
-        rating: 2
-    }
+    
 ];
 
 
+
+
+     
 export { recentTransaction, productPerformance, productsCard }

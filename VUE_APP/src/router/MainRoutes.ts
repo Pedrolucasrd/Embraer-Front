@@ -31,6 +31,22 @@ const MainRoutes = {
             path: '/sample-page',
             component: () => import('@/views/pages/SamplePage.vue')
         },
+        {
+            name: 'Statistic',
+            path: '/statistic',
+            component: () => import('@/views/pages/Statistics.vue')
+        },
+        {
+            name: 'Item',
+            path: '/item/:id',
+            component: () => import('@/views/pages/ItemCraft.vue')
+          },
+          {
+            name: 'Chassi',
+            path: '/chassi/:id',
+            component: () => import('@/views/pages/ChassiProfile.vue')
+          },
+          
     ]
 };
 
