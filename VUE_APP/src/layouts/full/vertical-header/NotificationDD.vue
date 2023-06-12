@@ -1,23 +1,23 @@
 <template>
-    <v-btn icon variant="text" class="custom-hover-primary ml-0 ml-md-5 text-muted" @click="toggleNotificationMenu">
-      <v-badge dot color="primary" offset-x="-5" offset-y="-3">
-        <BellRingingIcon stroke-width="1.5" size="22" />
-      </v-badge>
-    </v-btn>
-  
-    <v-menu v-model="notificationMenuVisible" class="notification-menu">
-      <v-card>
-        <v-list>
-          <v-list-item v-for="(notification, index) in notifications" :key="index" @click="openNotification(notification)">
+  <v-menu :close-on-content-click="false">
+      <template v-slot:activator="{ props }">
+          <v-btn class="profileBtn custom-hover-primary" variant="text" v-bind="props" icon>
+              <v-avatar size="35">
+                <BellRingingIcon stroke-width="1.5" size="22" />
+              </v-avatar>
+          </v-btn>
+      </template>
+      <v-sheet rounded="md" width="200" elevation="10" class="mt-2">
+          <v-list class="py-0" lines="one" density="compact">
+            <v-list-item v-for="(notification, index) in notifications" :key="index" @click="openNotification(notification)">
             <v-list-item-content>
               {{ notification.mensagem }}
             </v-list-item-content>
           </v-list-item>
-        </v-list>
-      </v-card>
-    </v-menu>
-  
-    <v-dialog v-model="notificationDialogVisible" max-width="400">
+          </v-list>
+      </v-sheet>
+  </v-menu>
+  <v-dialog v-model="notificationDialogVisible" max-width="400">
       <v-card>
         <v-card-title>
           <span class="headline">Notificação</span>
@@ -30,7 +30,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </template>
+</template>
   
   <script>
   import axios from 'axios';
