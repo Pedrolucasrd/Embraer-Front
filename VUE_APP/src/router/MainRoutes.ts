@@ -37,6 +37,11 @@ const MainRoutes = {
             component: () => import('@/views/pages/Statistics.vue')
         },
         {
+            name: 'UserManager',
+            path: '/userManager',
+            component: () => import('@/views/pages/UserManager.vue')
+        },
+        {
             name: 'Item',
             path: '/item/:id',
             component: () => import('@/views/pages/ItemCraft.vue')

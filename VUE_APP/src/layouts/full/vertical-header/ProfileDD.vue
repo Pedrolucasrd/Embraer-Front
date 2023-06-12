@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { UserIcon, MailIcon, ListCheckIcon } from 'vue-tabler-icons';
+import { useRouter } from 'vue-router';
+
+// Obtém o objeto router
+const router = useRouter();
+
+// Função para redirecionar para outra página
+const redirectToUsersManager = () => {
+  router.push('/userManager'); // Substitua '/users-manager' pelo caminho da sua página de gerenciamento de usuários
+};
 </script>
 
 <template>
@@ -28,11 +37,11 @@ import { UserIcon, MailIcon, ListCheckIcon } from 'vue-tabler-icons';
                     </template>
                     <v-list-item-title  class="pl-4 text-body-1">My Account</v-list-item-title>
                 </v-list-item>
-                <v-list-item value="item3" active-color="primary"> 
+                <v-list-item value="item3" active-color="primary" @click="redirectToUsersManager">
                     <template v-slot:prepend>
-                        <ListCheckIcon stroke-width="1.5"  size="20"/>
+                        <ListCheckIcon stroke-width="1.5" size="20" />
                     </template>
-                    <v-list-item-title class="pl-4 text-body-1">My Task</v-list-item-title>
+                    <v-list-item-title class="pl-4 text-body-1">Users Manager</v-list-item-title>
                 </v-list-item>
             </v-list>
             <div class="pt-4 pb-4 px-5 text-center">
