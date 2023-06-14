@@ -1,7 +1,9 @@
+import { getUserInfo } from '@/data/logged';
 import {
     ApertureIcon,
+    ChartBarIcon,
     CopyIcon,
-    LayoutDashboardIcon, LoginIcon, MoodHappyIcon, TypographyIcon, UserPlusIcon
+    LayoutDashboardIcon, LoginIcon, MoodHappyIcon, TypographyIcon, UserPlusIcon, UsersIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -26,17 +28,6 @@ const sidebarItem: menu[] = [
         icon: LayoutDashboardIcon,
         to: '/'
     },
-    { header: 'utilities' },
-    {
-        title: 'Typography',
-        icon: TypographyIcon,
-        to: '/ui/typography'
-    },
-    {
-        title: 'Shadow',
-        icon: CopyIcon,
-        to: '/ui/shadow'
-    },
     { header: 'auth' },
     {
         title: 'Login',
@@ -44,21 +35,48 @@ const sidebarItem: menu[] = [
         to: '/auth/login'
     },
     {
-        title: 'Register',
-        icon: UserPlusIcon,
-        to: '/auth/register'
-    },
-    { header: 'Extra' },
-    {
         title: 'Icons',
         icon: MoodHappyIcon,
         to: '/icons'
     },
-    {
-        title: 'Sample Page',
-        icon: ApertureIcon,
-        to: '/sample-page'
-    },
 ];
 
+import { ref } from 'vue';
+const role = ref('');
+const userRole = await getUserInfo();
+  if (userRole === 'ROLE_USER') {
+    role.value = 'user';
+    sidebarItem.push(
+    {header: 'Utilities'},
+    {
+      title: 'Opção do usuário',
+      icon: UsersIcon,
+      to: '/opcao-usuario'
+    });
+    
+} else if (userRole === 'ROLE_ADMIN') {
+    role.value = 'admin';
+    sidebarItem.push(
+    {header: 'Utilities'},
+    {
+        title: 'Statistics',
+        icon: ChartBarIcon,
+        to: '/statistic'
+    },
+    {
+        title: 'Users Manager',
+        icon: UsersIcon,
+        to: '/userManager'
+    });
+
+  } else if (userRole === 'ROLE_EDITOR') {
+    role.value = 'editor';
+    sidebarItem.push(
+    {header: 'Utilities'},
+    {
+      title: 'Opção do editor',
+      icon: UsersIcon,
+      to: '/opcao-editor'
+    });
+  }
 export default sidebarItem;
