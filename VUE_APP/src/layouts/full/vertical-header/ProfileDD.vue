@@ -31,13 +31,13 @@ const redirectToUsersManager = () => {
                     </template>
                     <v-list-item-title class="pl-4 text-body-1">My Profile</v-list-item-title>
                 </v-list-item>
-                <v-list-item value="item2" active-color="primary">
+                <!--<v-list-item value="item2" active-color="primary">
                     <template v-slot:prepend>
                         <MailIcon stroke-width="1.5" size="20"/>
                     </template>
                     <v-list-item-title  class="pl-4 text-body-1">My Account</v-list-item-title>
                 </v-list-item>
-                <!--<v-list-item value="item3" active-color="primary" @click="redirectToUsersManager">
+                <v-list-item value="item3" active-color="primary" @click="redirectToUsersManager">
                     <template v-slot:prepend>
                         <ListCheckIcon stroke-width="1.5" size="20" />
                     </template>
