@@ -4,7 +4,7 @@ import {
     ChartBarIcon,
     CopyIcon,
     EditIcon,
-    LayoutDashboardIcon, LoginIcon, MoodHappyIcon, TypographyIcon, UserPlusIcon, UsersIcon
+    LayoutDashboardIcon, LoginIcon, MoodHappyIcon, TableIcon, TypographyIcon, UserPlusIcon, UsersIcon
 } from 'vue-tabler-icons';
 
 export interface menu {
@@ -50,9 +50,9 @@ const userRole = await getUserInfo();
     sidebarItem.push(
     {header: 'Utilities'},
     {
-      title: 'Opção do usuário',
-      icon: UsersIcon,
-      to: '/opcao-usuario'
+      title: 'Consultation',
+      icon: TableIcon,
+      to: '/userTable'
     });
     
 } else if (userRole === 'ROLE_ADMIN') {

@@ -10,7 +10,7 @@
             <EditorComponent />
           </div>
           <div v-if="role === 'user'">
-            <UserComponent />
+            <ProductCards />
           </div>
         </v-col>
       </v-row>

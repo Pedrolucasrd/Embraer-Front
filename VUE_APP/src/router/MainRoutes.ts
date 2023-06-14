@@ -27,9 +27,9 @@ const MainRoutes = {
             component: () => import('@/views/pages/Icons.vue')
         },
         {
-            name: 'Starter',
-            path: '/sample-page',
-            component: () => import('@/views/pages/SamplePage.vue')
+            name: 'UserTable',
+            path: '/userTable',
+            component: () => import('@/components/user/ConsultaTable.vue')
         },
         {
             name: 'Statistic',
