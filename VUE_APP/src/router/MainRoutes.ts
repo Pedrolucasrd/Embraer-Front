@@ -42,6 +42,11 @@ const MainRoutes = {
             component: () => import('@/views/pages/UserManager.vue')
         },
         {
+            name: 'EditorTable',
+            path: '/editorTable',
+            component: () => import('@/views/pages/EditorTable.vue')
+        },
+        {
             name: 'Item',
             path: '/item/:id',
             component: () => import('@/views/pages/ItemCraft.vue')

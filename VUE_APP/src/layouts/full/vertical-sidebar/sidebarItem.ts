@@ -3,6 +3,7 @@ import {
     ApertureIcon,
     ChartBarIcon,
     CopyIcon,
+    EditIcon,
     LayoutDashboardIcon, LoginIcon, MoodHappyIcon, TypographyIcon, UserPlusIcon, UsersIcon
 } from 'vue-tabler-icons';
 
@@ -74,9 +75,9 @@ const userRole = await getUserInfo();
     sidebarItem.push(
     {header: 'Utilities'},
     {
-      title: 'Opção do editor',
-      icon: UsersIcon,
-      to: '/opcao-editor'
+      title: 'Chassis Editor',
+      icon: EditIcon,
+      to: '/editorTable'
     });
   }
 export default sidebarItem;
