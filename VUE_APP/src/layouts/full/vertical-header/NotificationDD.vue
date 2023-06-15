@@ -9,11 +9,11 @@
       </template>
       <v-sheet rounded="md" width="200" elevation="10" class="mt-2">
           <v-list class="py-0" lines="one" density="compact">
-            <v-list-item v-for="(notification, index) in notifications" :key="index" @click="openNotification(notification)">
+            <!--<v-list-item v-for="(notification, index) in notifications" :key="index" @click="openNotification(notification)">
             <v-list-item-content>
               {{ notification.mensagem }}
             </v-list-item-content>
-          </v-list-item>
+          </v-list-item>-->
           </v-list>
       </v-sheet>
   </v-menu>

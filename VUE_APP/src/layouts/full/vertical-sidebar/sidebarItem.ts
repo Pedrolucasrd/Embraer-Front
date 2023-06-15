@@ -23,23 +23,17 @@ export interface menu {
 }
 
 const sidebarItem: menu[] = [
-    { header: 'Home' },
-    {
-        title: 'Dashboard',
-        icon: LayoutDashboardIcon,
-        to: '/'
-    },
     { header: 'auth' },
     {
         title: 'Login',
         icon: LoginIcon,
         to: '/auth/login'
     },
-    {
-        title: 'Icons',
-        icon: MoodHappyIcon,
-        to: '/icons'
-    },
+//    {
+//        title: 'Icons',
+//        icon: MoodHappyIcon,
+//        to: '/icons'
+//    },
 ];
 
 import { ref } from 'vue';
@@ -48,6 +42,12 @@ const userRole = await getUserInfo();
   if (userRole === 'ROLE_USER') {
     role.value = 'user';
     sidebarItem.push(
+      { header: 'Home' },
+      {
+          title: 'Dashboard',
+          icon: LayoutDashboardIcon,
+          to: '/'
+      },
     {header: 'Utilities'},
     {
       title: 'Consultation',
@@ -58,6 +58,12 @@ const userRole = await getUserInfo();
 } else if (userRole === 'ROLE_ADMIN') {
     role.value = 'admin';
     sidebarItem.push(
+      { header: 'Home' },
+    {
+        title: 'Dashboard',
+        icon: LayoutDashboardIcon,
+        to: '/'
+    },
     {header: 'Utilities'},
     {
         title: 'Statistics',
